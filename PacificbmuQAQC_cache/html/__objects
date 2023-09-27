@@ -1,0 +1,16 @@
+load data	data
+set_dates	data
+set bounds	bounds	vars
+summary	summary.samples
+bounds	.PacificbmuQAQC_cache/html/bounds_4c50cc77f4ef8e36be97302a5c69aba9_meta
+unnamed-chunk-1	.PacificbmuQAQC_cache/html/unnamed-chunk-1_af45dab6096e4a074b6958e243eeceb6_meta
+volumeVSmass	plot1
+plot macroboring	plot2
+plotgrazing	plot3
+accretion	plot4
+grazingVSaccretion	plot5
+netAccretion vs net erosion	plot6
+bioerosion rate	plot7
+accretionRate	plot8
+bardata	data2	data3
+bar graph	bmubar	data3
