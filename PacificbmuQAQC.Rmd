@@ -316,7 +316,7 @@ plot8
 
 ```{r bardata, include=FALSE}
 library(tidyr)
-data2<-select(data,SubRegion, tagNum, PostCTGrazing, PostCTMacroboring, PostCTAccretion)
+data2<-select(data,SubRegion,SiteName, tagNum, PostCTGrazing, PostCTMacroboring, PostCTAccretion)
 data2$PostCTMacroboring<-data2$PostCTMacroboring*-1
 data2$PostCTGrazing<-data2$PostCTGrazing*-1
 head(data2)
@@ -325,7 +325,7 @@ head(data2)
 data3 <- gather(data2,
                    key = "bmuAttribute",
                    value = "carbAmount",
-                   -tagNum, -SubRegion)
+                   -tagNum, -SubRegion, -SiteName)
 head(data3)
 
 
@@ -338,11 +338,12 @@ head(data3)
 data3$bmuAttribute <- factor(data3$bmuAttribute, levels = c("PostCTGrazing", "PostCTmacroboring", "PostCTAccretion"))
 data3$carbAmount = as.numeric(as.character(data3$carbAmount))
 
-bmubar = ggplot(data = data3, aes(x=SubRegion, y=carbAmount, fill=bmuAttribute))+
+bmubar = ggplot(data = data3, aes(x=SiteName, y=carbAmount, fill=bmuAttribute))+
   geom_bar(stat="identity", color="black",
            position = position_dodge())+
-  labs(y=expression("Amount change (cm3)"), x="BMU Region")+
-  scale_fill_manual(name = "bmuAttribute", labels = c("Grazing", "Accretion", "Macroboring"), values=c("#009E73", "#56B4E0","#D55E00" ))
+  labs(y=expression("Amount change (cm3)"), x="BMU Site")+
+  scale_fill_manual(name = "bmuAttribute", labels = c("Grazing", "Accretion", "Macroboring"), values=c("#009E73", "#56B4E0","#D55E00" ))+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 bmubar
 
 
